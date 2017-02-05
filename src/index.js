@@ -14,7 +14,7 @@ module.exports = function (period, language) {
       language = '';
     }
 
-    return axios.get('https://github.com/trending/' + language + '?since=' + period)
+    return axios.get('https://github.com/trending/' + encodeURIComponent(language) + '?since=' + period)
       .then(response => {
         const $ = cheerio.load(response.data);
         const repos = [];
@@ -28,8 +28,8 @@ module.exports = function (period, language) {
             href: 'https://github.com/' + title.replace(/ /g, ''),
             description: $(repo).find('p', '.py-1').text().trim() || null,
             language: $(repo).find('[itemprop=programmingLanguage]').text().trim(),
-            stars: parseInt($(repo).find('[aria-label=Stargazers]').text().trim().replace(',', '')),
-            forks: parseInt($(repo).find('[aria-label=Forks]').text().trim().replace(',', ''))
+            stars: parseInt($(repo).find('[aria-label=Stargazers]').text().trim().replace(',', '') || 0),
+            forks: parseInt($(repo).find('[aria-label=Forks]').text().trim().replace(',', '') || 0)
           });
         });
 

@@ -46,11 +46,11 @@ describe('Trending Github Test Suite', function () {
     });
   });
 
-  describe('Non-existing language', function () {
+  describe('c# language', function () {
     let result;
 
     before(function (done) {
-      trending('daily', 'xoxo')
+      trending('daily', 'c#')
         .then(response => {
           result = response;
           done();
@@ -60,9 +60,29 @@ describe('Trending Github Test Suite', function () {
         });
     });
 
-    it('should return the same results as all languages', function () {
+    it('should return c# repositories', function () {
       const groupedByLanguage = collect(result).groupBy('language').all();
-      expect(Object.keys(groupedByLanguage).length).to.be.above(1);
+      expect(Object.keys(groupedByLanguage).length).to.eql(1);
     });
   });
-});
+
+    describe('Non-existing language', function () {
+      let result;
+
+      before(function (done) {
+        trending('daily', 'xoxo')
+          .then(response => {
+            result = response;
+            done();
+          })
+          .catch(err => {
+            result = err;
+          });
+      });
+
+      it('should return the same results as all languages', function () {
+        const groupedByLanguage = collect(result).groupBy('language').all();
+        expect(Object.keys(groupedByLanguage).length).to.be.above(1);
+      });
+    });
+  });
