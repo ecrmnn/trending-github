@@ -41,8 +41,6 @@ describe('Trending Github Test Suite', function () {
     });
 
     it('should get all trending repos from javascript', function () {
-      console.log(result);
-
       const groupedByLanguage = collect(result).groupBy('language').all();
       expect(Object.keys(groupedByLanguage).length).to.eql(1);
     });

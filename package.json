@@ -23,11 +23,11 @@
   "homepage": "https://github.com/ecrmnn/trending-github",
   "devDependencies": {
     "chai": "^3.5.0",
-    "mocha": "^2.4.5"
+    "mocha": "^2.4.5",
+    "collect.js": "^2.0.1"
   },
   "dependencies": {
     "axios": "^0.15.3",
-    "cheerio": "^0.22.0",
-    "collect.js": "^2.0.1"
+    "cheerio": "^0.22.0"
   }
 }
