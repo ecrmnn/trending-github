@@ -3,6 +3,8 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 
+'use strict';
+
 module.exports = function (period, language) {
   return new Promise((resolve, reject) => {
 
@@ -22,14 +24,17 @@ module.exports = function (period, language) {
         $('li', 'ol.repo-list').each((index, repo) => {
           const title = $(repo).find('h3').text().trim();
 
+          const starLink = '/' + title.replace(/ /g, '') + '/stargazers';
+          const forkLink = '/' + title.replace(/ /g, '') + '/network';
+
           repos.push({
             author: title.split(' / ')[0],
             name: title.split(' / ')[1],
             href: 'https://github.com/' + title.replace(/ /g, ''),
             description: $(repo).find('p', '.py-1').text().trim() || null,
             language: $(repo).find('[itemprop=programmingLanguage]').text().trim(),
-            stars: parseInt($(repo).find('[aria-label=Stargazers]').text().trim().replace(',', '') || 0),
-            forks: parseInt($(repo).find('[aria-label=Forks]').text().trim().replace(',', '') || 0)
+            stars: parseInt($(repo).find('[href="' + starLink + '"]').text().trim().replace(',', '') || 0),
+            forks: parseInt($(repo).find('[href="' + forkLink + '"]').text().trim().replace(',', '') || 0)
           });
         });
 
