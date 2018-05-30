@@ -3,8 +3,6 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 
-'use strict';
-
 module.exports = function (period, language) {
   return new Promise((resolve, reject) => {
 
@@ -34,7 +32,8 @@ module.exports = function (period, language) {
             description: $(repo).find('p', '.py-1').text().trim() || null,
             language: $(repo).find('[itemprop=programmingLanguage]').text().trim(),
             stars: parseInt($(repo).find('[href="' + starLink + '"]').text().trim().replace(',', '') || 0),
-            forks: parseInt($(repo).find('[href="' + forkLink + '"]').text().trim().replace(',', '') || 0)
+            forks: parseInt($(repo).find('[href="' + forkLink + '"]').text().trim().replace(',', '') || 0),
+            starstoday: parseInt($(repo).find('span.float-sm-right:contains("stars today")').text().trim().replace('stars today','').replace(',','') || 0)
           });
         });
 
