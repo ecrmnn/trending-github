@@ -33,7 +33,7 @@ module.exports = function (period, language) {
             language: $(repo).find('[itemprop=programmingLanguage]').text().trim(),
             stars: parseInt($(repo).find('[href="' + starLink + '"]').text().trim().replace(',', '') || 0),
             forks: parseInt($(repo).find('[href="' + forkLink + '"]').text().trim().replace(',', '') || 0),
-            starstoday: parseInt($(repo).find('span.float-sm-right:contains("stars today")').text().trim().replace('stars today','').replace(',','') || 0)
+            starsToday: parseInt($(repo).find('span.float-sm-right:contains("stars today")').text().trim().replace('stars today','').replace(',','') || 0)
           });
         });
 

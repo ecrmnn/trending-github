@@ -26,7 +26,7 @@ trending()
 //=>   language: 'Go',
 //=>   stars: 966,
 //=>   forks: 20,
-//=>   starstoday: 153
+//=>   starsToday: 153
 //=> }, ... ]
 ```
 
@@ -44,7 +44,7 @@ trending('weekly', 'javascript')
 //=>   language: 'JavaScript',
 //=>   stars: 229260,
 //=>   forks: 9289
-//=>   starstoday: 42
+//=>   starsToday: 42
 //=> }, ... ]
 ```
 
