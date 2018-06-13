@@ -1,6 +1,6 @@
 {
   "name": "trending-github",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Simple API for getting trending repositories on Github",
   "main": "src/index.js",
   "scripts": {
@@ -22,12 +22,12 @@
   },
   "homepage": "https://github.com/ecrmnn/trending-github",
   "devDependencies": {
-    "chai": "^3.5.0",
-    "mocha": "^2.4.5",
-    "collect.js": "^2.0.1"
+    "chai": "^4.1.2",
+    "collect.js": "^4.0.18",
+    "mocha": "^5.2"
   },
   "dependencies": {
-    "axios": "^0.15.3",
-    "cheerio": "^0.22.0"
+    "axios": "~0.18.0",
+    "cheerio": "~1.0.0-rc.2"
   }
 }
