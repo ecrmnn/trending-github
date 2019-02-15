@@ -1,12 +1,12 @@
 {
   "name": "trending-github",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "Simple API for getting trending repositories on Github",
   "main": "dist/index.js",
   "scripts": {
     "test": "mocha -r ts-node/register test/tests.ts",
     "build": "rm -rf dist/ && tsc src/** --outDir dist/",
-    "prepublishOnly": "npm run build"
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
