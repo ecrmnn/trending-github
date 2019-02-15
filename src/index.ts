@@ -24,12 +24,6 @@ const trendingGitHub = function (period?: string, language?: string) {
       language = '';
     }
 
-    const array: string[] = [];
-
-    for (let index = 0; index < array.length; index += 1) {
-      const element = array[index];
-    }
-
     return axios.get('https://github.com/trending/' + encodeURIComponent(language) + '?since=' + period)
       .then((response) => {
         const $ = cheerio.load(response.data);
