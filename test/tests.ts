@@ -1,13 +1,10 @@
-'use strict';
-
-const chai = require('chai');
-const expect = require('chai').expect;
-const collect = require('collect.js');
-const trending = require('../src');
+import { expect } from 'chai';
+import collect from 'collect.js';
+import trending from '../src';
 
 describe('Trending Github Test Suite', function () {
   describe('All languages', function () {
-    let result;
+    let result: object;
 
     before(function (done) {
       trending()
@@ -27,7 +24,7 @@ describe('Trending Github Test Suite', function () {
   });
 
   describe('JavaScript', function () {
-    let result;
+    let result: object;
 
     before(function (done) {
       trending('weekly', 'javascript')
@@ -47,7 +44,7 @@ describe('Trending Github Test Suite', function () {
   });
 
   describe('c# language', function () {
-    let result;
+    let result: object;
 
     before(function (done) {
       trending('daily', 'c#')
@@ -66,23 +63,23 @@ describe('Trending Github Test Suite', function () {
     });
   });
 
-    describe('Non-existing language', function () {
-      let result;
+  describe('Non-existing language', function () {
+    let result: object;
 
-      before(function (done) {
-        trending('daily', 'xoxo')
-          .then(response => {
-            result = response;
-            done();
-          })
-          .catch(err => {
-            result = err;
-          });
-      });
+    before(function (done) {
+      trending('daily', 'xoxo')
+        .then(response => {
+          result = response;
+          done();
+        })
+        .catch(err => {
+          result = err;
+        });
+    });
 
-      it('should return the same results as all languages', function () {
-        const groupedByLanguage = collect(result).groupBy('language').all();
-        expect(Object.keys(groupedByLanguage).length).to.be.above(1);
-      });
+    it('should return the same results as all languages', function () {
+      const groupedByLanguage = collect(result).groupBy('language').all();
+      expect(Object.keys(groupedByLanguage).length).to.be.above(1);
     });
   });
+});
