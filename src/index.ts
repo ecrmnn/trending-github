@@ -14,16 +14,8 @@ type Repository = {
   starsToday: number,
 };
 
-const trendingGitHub = function (period?: string, language?: string) {
+const trendingGitHub = function (period: string = 'daily', language: string = '') {
   return new Promise((resolve, reject) => {
-    if (typeof period === 'undefined') {
-      period = 'daily';
-    }
-
-    if (typeof language === 'undefined') {
-      language = '';
-    }
-
     return axios.get('https://github.com/trending/' + encodeURIComponent(language) + '?since=' + period)
       .then((response) => {
         const $ = cheerio.load(response.data);
