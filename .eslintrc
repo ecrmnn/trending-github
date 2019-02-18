@@ -1,0 +1,16 @@
+{
+  "extends": "airbnb-base",
+  "parserOptions": {
+    "extensions": ".ts"
+  },
+  "plugins": [
+    "import"
+  ],
+  "rules": {
+    "curly": "error",
+    "newline-before-return": "error",
+    "no-console": "error",
+    "no-ternary": "error"
+  },
+  "parser": "@typescript-eslint/parser"
+}
