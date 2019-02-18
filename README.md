@@ -5,6 +5,7 @@
 [![npm version](https://img.shields.io/npm/v/trending-github.svg?style=flat-square)](http://badge.fury.io/js/trending-github)
 [![npm downloads](https://img.shields.io/npm/dm/trending-github.svg?style=flat-square)](http://badge.fury.io/js/trending-github)
 [![npm license](https://img.shields.io/npm/l/trending-github.svg?style=flat-square)](http://badge.fury.io/js/trending-github)
+[![eslint](https://img.shields.io/badge/code_style-airbnb-blue.svg?style=flat-square)](https://github.com/airbnb/javascript)
 
 ### Installation
 ```bash
