@@ -29,7 +29,7 @@ const trendingGitHub = (period: string = 'daily', language: string = '') => (
           author: title.split(' / ')[0],
           name: title.split(' / ')[1],
           href: `https://github.com/${title.replace(/ /g, '')}`,
-          description: $(repo).find('p .py-1').text().trim() || null,
+          description: $(repo).find('.py-1 > p').text().trim() || null,
           language: $(repo).find('[itemprop=programmingLanguage]').text().trim(),
           stars: parseInt($(repo).find(`[href="${starLink}"]`).text().trim()
             .replace(',', '') || '0', 0),
