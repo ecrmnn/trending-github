@@ -19,8 +19,8 @@ const trendingGitHub = (period: string = 'daily', language: string = '') => (
       const $ = cheerio.load(response.data);
       const repos: Repository[] = [];
 
-      $('li', 'ol.repo-list').each((index, repo) => {
-        const title = $(repo).find('h3').text().trim();
+      $('article').each((index, repo) => {
+        const title = $(repo).find('h1.h3 a').text().trim();
 
         const starLink = `/${title.replace(/ /g, '')}/stargazers`;
         const forkLink = `/${title.replace(/ /g, '')}/network`;
@@ -29,7 +29,7 @@ const trendingGitHub = (period: string = 'daily', language: string = '') => (
           author: title.split(' / ')[0],
           name: title.split(' / ')[1],
           href: `https://github.com/${title.replace(/ /g, '')}`,
-          description: $(repo).find('.py-1 > p').text().trim() || null,
+          description: $(repo).find('p').text().trim() || null,
           language: $(repo).find('[itemprop=programmingLanguage]').text().trim(),
           stars: parseInt($(repo).find(`[href="${starLink}"]`).text().trim()
             .replace(',', '') || '0', 0),
