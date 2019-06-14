@@ -4,7 +4,7 @@ import trending from '../src';
 
 describe('Trending Github Test Suite', function () {
   describe('All languages', function () {
-    let result: object;
+    let result: any;
 
     before(function (done) {
       trending()
@@ -24,7 +24,7 @@ describe('Trending Github Test Suite', function () {
   });
 
   describe('JavaScript', function () {
-    let result: object;
+    let result: any;
 
     before(function (done) {
       trending('weekly', 'javascript')
@@ -44,7 +44,7 @@ describe('Trending Github Test Suite', function () {
   });
 
   describe('c# language', function () {
-    let result: object;
+    let result: any;
 
     before(function (done) {
       trending('daily', 'c#')
@@ -64,7 +64,7 @@ describe('Trending Github Test Suite', function () {
   });
 
   describe('Non-existing language', function () {
-    let result: object;
+    let result: any;
 
     before(function (done) {
       trending('daily', 'xoxo')
