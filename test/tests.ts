@@ -69,17 +69,18 @@ describe('Trending Github Test Suite', function () {
     before(function (done) {
       trending('daily', 'xoxo')
         .then(response => {
+          console.log('then');
           result = response;
           done();
         })
         .catch(err => {
+          console.log('err');
           result = err;
         });
     });
 
-    it('should return the same results as all languages', function () {
-      const groupedByLanguage = collect(result).groupBy('language').all();
-      expect(Object.keys(groupedByLanguage).length).to.be.above(1);
+    it('should return empty', function () {
+      expect(result).to.eql([]);
     });
   });
 });
