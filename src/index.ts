@@ -25,7 +25,7 @@ const trendingGitHub = (period: string = 'daily', language: string = '') => (
         const starLink = `/${title.replace(/ /g, '')}/stargazers`;
         const forkLink = `/${title.replace(/ /g, '')}/network`;
 
-        repos.push({
+        const indexRepo = {
           author: title.split(' / ')[0],
           name: title.split(' / ')[1],
           href: `https://github.com/${title.replace(/ /g, '')}`,
@@ -35,10 +35,47 @@ const trendingGitHub = (period: string = 'daily', language: string = '') => (
             .replace(',', '') || '0', 0),
           forks: parseInt($(repo).find(`[href="${forkLink}"]`).text().trim()
             .replace(',', '') || '0', 0),
-          starsToday: parseInt($(repo).find('span.float-sm-right:contains("stars today")').text().trim()
-            .replace('stars today', '')
-            .replace(',', '') || '0', 0),
-        });
+        }
+
+        switch (period) {
+          case 'daily':
+            indexRepo.starsToday = parseInt(
+              $(repo)
+                .find('span.float-sm-right:contains("stars today")')
+                .text()
+                .trim()
+                .replace('stars today', '')
+                .replace(',', '') || '0',
+              0,
+            )
+            break
+          case 'weekly':
+            indexRepo.starsThisWeek = parseInt(
+              $(repo)
+                .find('span.float-sm-right:contains("stars this week")')
+                .text()
+                .trim()
+                .replace('stars this week', '')
+                .replace(',', '') || '0',
+              0,
+            )
+            break
+          case 'monthly':
+            indexRepo.starsThisMonth = parseInt(
+              $(repo)
+                .find('span.float-sm-right:contains("stars this month")')
+                .text()
+                .trim()
+                .replace('stars this month', '')
+                .replace(',', '') || '0',
+              0,
+            )
+            break
+          default:
+            break
+        }
+
+        repos.push(indexRepo);
       });
 
       resolve(repos);
