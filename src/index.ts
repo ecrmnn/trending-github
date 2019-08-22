@@ -9,7 +9,9 @@ type Repository = {
   language: string,
   stars: number,
   forks: number,
-  starsToday: number,
+  starsToday?: number,
+  starsThisWeek?: number,
+  starsThisMonth?: number,
 };
 
 const trendingGitHub = (period: string = 'daily', language: string = '') => (
@@ -25,7 +27,7 @@ const trendingGitHub = (period: string = 'daily', language: string = '') => (
         const starLink = `/${title.replace(/ /g, '')}/stargazers`;
         const forkLink = `/${title.replace(/ /g, '')}/network`;
 
-        const indexRepo = {
+        const indexRepo: Repository = {
           author: title.split(' / ')[0],
           name: title.split(' / ')[1],
           href: `https://github.com/${title.replace(/ /g, '')}`,
@@ -37,7 +39,7 @@ const trendingGitHub = (period: string = 'daily', language: string = '') => (
             .replace(',', '') || '0', 0),
         }
 
-        switch (period) {
+        switch (period as string) {
           case 'daily':
             indexRepo.starsToday = parseInt(
               $(repo)
