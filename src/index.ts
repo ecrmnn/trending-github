@@ -9,9 +9,7 @@ type Repository = {
   language: string,
   stars: number,
   forks: number,
-  starsToday?: number,
-  starsThisWeek?: number,
-  starsThisMonth?: number,
+  starsInPeriod: number,
 };
 
 const trendingGitHub = (period: string = 'daily', language: string = '') => (
@@ -37,11 +35,12 @@ const trendingGitHub = (period: string = 'daily', language: string = '') => (
             .replace(',', '') || '0', 0),
           forks: parseInt($(repo).find(`[href="${forkLink}"]`).text().trim()
             .replace(',', '') || '0', 0),
+          starsInPeriod: parseInt('0')
         }
 
         switch (period as string) {
           case 'daily':
-            indexRepo.starsToday = parseInt(
+            indexRepo.starsInPeriod = parseInt(
               $(repo)
                 .find('span.float-sm-right:contains("stars today")')
                 .text()
@@ -52,7 +51,7 @@ const trendingGitHub = (period: string = 'daily', language: string = '') => (
             )
             break
           case 'weekly':
-            indexRepo.starsThisWeek = parseInt(
+            indexRepo.starsInPeriod = parseInt(
               $(repo)
                 .find('span.float-sm-right:contains("stars this week")')
                 .text()
@@ -63,7 +62,7 @@ const trendingGitHub = (period: string = 'daily', language: string = '') => (
             )
             break
           case 'monthly':
-            indexRepo.starsThisMonth = parseInt(
+            indexRepo.starsInPeriod = parseInt(
               $(repo)
                 .find('span.float-sm-right:contains("stars this month")')
                 .text()
