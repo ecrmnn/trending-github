@@ -9,7 +9,7 @@ type Repository = {
   language: string,
   stars: number,
   forks: number,
-  starsInPeriod: number,
+  starsInPeriod: number | null,
 };
 
 const trendingGitHub = (period: string = 'daily', language: string = '') => (
@@ -35,7 +35,7 @@ const trendingGitHub = (period: string = 'daily', language: string = '') => (
             .replace(',', '') || '0', 0),
           forks: parseInt($(repo).find(`[href="${forkLink}"]`).text().trim()
             .replace(',', '') || '0', 0),
-          starsInPeriod: parseInt('0', 0)
+          starsInPeriod: null,
         }
 
         switch (period as string) {
