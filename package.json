@@ -1,7 +1,7 @@
 {
   "name": "trending-github",
   "version": "2.0.0",
-  "description": "Simple API for getting trending repositories on Github",
+  "description": "Simple API for getting trending repositories on GitHub",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
