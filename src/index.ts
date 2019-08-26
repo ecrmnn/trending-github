@@ -9,7 +9,7 @@ type Repository = {
   language: string,
   stars: number,
   forks: number,
-  starsToday: number,
+  starsInPeriod: number | null,
 };
 
 const trendingGitHub = (period: string = 'daily', language: string = '') => (
@@ -25,7 +25,16 @@ const trendingGitHub = (period: string = 'daily', language: string = '') => (
         const starLink = `/${title.replace(/ /g, '')}/stargazers`;
         const forkLink = `/${title.replace(/ /g, '')}/network`;
 
-        repos.push({
+        let text = '';
+        if (period === 'daily') {
+          text = 'stars today';
+        } else if (period === 'weekly') {
+          text = 'stars this week';
+        } else {
+          text = 'stars this month';
+        }
+
+        const indexRepo: Repository = {
           author: title.split(' / ')[0],
           name: title.split(' / ')[1],
           href: `https://github.com/${title.replace(/ /g, '')}`,
@@ -35,10 +44,18 @@ const trendingGitHub = (period: string = 'daily', language: string = '') => (
             .replace(',', '') || '0', 0),
           forks: parseInt($(repo).find(`[href="${forkLink}"]`).text().trim()
             .replace(',', '') || '0', 0),
-          starsToday: parseInt($(repo).find('span.float-sm-right:contains("stars today")').text().trim()
-            .replace('stars today', '')
-            .replace(',', '') || '0', 0),
-        });
+          starsInPeriod: parseInt(
+            $(repo)
+              .find(`span.float-sm-right:contains('${text}')`)
+              .text()
+              .trim()
+              .replace(text, '')
+              .replace(',', '') || '0',
+            0,
+          ),
+        };
+
+        repos.push(indexRepo);
       });
 
       resolve(repos);
