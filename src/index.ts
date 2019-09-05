@@ -20,10 +20,13 @@ const trendingGitHub = (period: string = 'daily', language: string = '') => (
       const repos: Repository[] = [];
 
       $('article').each((index, repo) => {
-        const title = $(repo).find('h1.h3 a').text().trim();
+        const title = $(repo).find('h1.h3 a').text().replace(/\s/g, '');
 
-        const starLink = `/${title.replace(/ /g, '')}/stargazers`;
-        const forkLink = `/${title.replace(/ /g, '')}/network`;
+        const author = title.split('/')[0];
+        const name = title.split('/')[1];
+
+        const starLink = `/${title.replace(/ /g, '')}/stargazers.${name}`;
+        const forkLink = `/${title.replace(/ /g, '')}/network/members.${name}`;
 
         let text = '';
         if (period === 'daily') {
@@ -35,9 +38,9 @@ const trendingGitHub = (period: string = 'daily', language: string = '') => (
         }
 
         const indexRepo: Repository = {
-          author: title.split(' / ')[0],
-          name: title.split(' / ')[1],
-          href: `https://github.com/${title.replace(/ /g, '')}`,
+          author,
+          name,
+          href: `https://github.com/${author}/${name}`,
           description: $(repo).find('p').text().trim() || null,
           language: $(repo).find('[itemprop=programmingLanguage]').text().trim(),
           stars: parseInt($(repo).find(`[href="${starLink}"]`).text().trim()
