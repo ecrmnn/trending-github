@@ -14,7 +14,11 @@ type Repository = {
 
 const trendingGitHub = (period: string = 'daily', language: string = '') => (
   new Promise((resolve, reject) => axios
-    .get(`https://github.com/trending/${encodeURIComponent(language)}?since=${period}`)
+    .get(`https://github.com/trending/${encodeURIComponent(language)}?since=${period}`, {
+      headers: {
+        Accept: 'text/html',
+      },
+    })
     .then((response) => {
       const $ = cheerio.load(response.data);
       const repos: Repository[] = [];
@@ -25,7 +29,7 @@ const trendingGitHub = (period: string = 'daily', language: string = '') => (
         const author = title.split('/')[0];
         const name = title.split('/')[1];
 
-        const starLink = `/${title.replace(/ /g, '')}/stargazers.${name}`;
+        const starLink = `/${title.replace(/ /g, '')}/stargazers`;
         const forkLink = `/${title.replace(/ /g, '')}/network/members.${name}`;
 
         let text = '';
