@@ -1,6 +1,6 @@
 {
   "name": "trending-github",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Simple API for getting trending repositories on GitHub",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -8,7 +8,7 @@
     "test": "mocha -r ts-node/register test/tests.ts && npm run eslint",
     "eslint": "node_modules/.bin/eslint src/ test/ --fix --ext .ts",
     "build": "rm -rf dist && tsc",
-    "prepublish": "npm run build"
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
