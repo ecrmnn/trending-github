@@ -30,7 +30,7 @@ describe('Trending Github Test Suite', () => {
       expect(randomRepo.name.length).to.be.above(1);
       expect(randomRepo.href.length).to.be.above(1);
       expect(randomRepo.stars).to.be.above(1);
-      expect(randomRepo.starsInPeriod).to.be.above(1);
+      expect(randomRepo.starsInPeriod).to.be.at.least(1);
     });
   });
 
@@ -60,7 +60,7 @@ describe('Trending Github Test Suite', () => {
       expect(randomRepo.name.length).to.be.above(1);
       expect(randomRepo.href.length).to.be.above(1);
       expect(randomRepo.stars).to.be.above(1);
-      expect(randomRepo.starsInPeriod).to.be.above(1);
+      expect(randomRepo.starsInPeriod).to.be.at.least(1);
     });
   });
 
@@ -90,7 +90,7 @@ describe('Trending Github Test Suite', () => {
       expect(randomRepo.name.length).to.be.above(1);
       expect(randomRepo.href.length).to.be.above(1);
       expect(randomRepo.stars).to.be.above(1);
-      expect(randomRepo.starsInPeriod).to.be.above(1);
+      expect(randomRepo.starsInPeriod).to.be.at.least(1);
     });
   });
 
