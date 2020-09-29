@@ -64,11 +64,11 @@ describe('Trending Github Test Suite', () => {
     });
   });
 
-  describe('Python', () => {
+  describe('TypeScript', () => {
     let result: any;
 
     before((done) => {
-      trending('daily', 'python')
+      trending('daily', 'typescript')
         .then((response) => {
           result = response;
           done();
@@ -78,7 +78,7 @@ describe('Trending Github Test Suite', () => {
         });
     });
 
-    it('should return python repositories', () => {
+    it('should return typescript repositories', () => {
       const groupedByLanguage = collect(result).groupBy('language').all();
 
       expect(Object.keys(groupedByLanguage).length).to.be.at.least(1);
