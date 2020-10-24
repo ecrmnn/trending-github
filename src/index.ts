@@ -13,7 +13,7 @@ type Repository = {
 };
 
 const trendingGitHub = (period: string = 'daily', language: string = '') => (
-  new Promise((resolve, reject) => axios
+  new Promise<Repository[]>((resolve, reject) => axios
     .get(`https://github.com/trending/${encodeURIComponent(language)}?since=${period}`, {
       headers: {
         Accept: 'text/html',
