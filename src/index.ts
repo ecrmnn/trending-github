@@ -30,7 +30,7 @@ const trendingGitHub = (period: string = 'daily', language: string = '') => (
         const name = title.split('/')[1];
 
         const starLink = `/${title.replace(/ /g, '')}/stargazers`;
-        const forkLink = `/${title.replace(/ /g, '')}/network/members.${name}`;
+        const forkLink = `/${title.replace(/ /g, '')}/network/members`;
 
         let text = '';
         if (period === 'daily') {
